@@ -1,7 +1,6 @@
 require 'openssl'
 require 'base64'
-
-
+# Extend class string
 class String
   def encrypt(key)
     cipher = OpenSSL::Cipher::Cipher.new('DES-EDE3-CBC').encrypt
@@ -13,13 +12,12 @@ class String
   def decrypt(key)
     cipher = OpenSSL::Cipher::Cipher.new('DES-EDE3-CBC').decrypt
     cipher.key = Digest::SHA1.hexdigest key
-    s = [self].pack("H*").unpack("C*").pack("c*")
+    s = [self].pack('H*').unpack('C*').pack('c*')
 
     begin
       cipher.update(s) + cipher.final
     rescue
-      puts "Wrong Encripty key"
+      puts 'Wrong Encripty key'
     end
-
   end
 end
