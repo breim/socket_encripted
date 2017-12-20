@@ -10,7 +10,7 @@ sock = UDPSocket.new
 
 key = 'secret'
 
-loop  do
+loop do
   msg = gets.chomp.to_s
   cipher = msg.encrypt(key)
   encrypted = Base64.encode64(cipher)
